@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brandon Redmann — Profile</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config: lighter dark theme + subtle effects
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          container: { center: true, padding: '1rem' },
+          fontFamily: { display: ['ui-sans-serif', 'system-ui', 'Inter', 'Segoe UI', 'Roboto'] },
+          colors: {
+            // Lighter, matte-ish dark palette
+            noir: {
+              900: '#181a1b',  // page background (lighter than #0b/950)
+              850: '#1f2123',  // base surface
+              800: '#26282b',  // elevated surface
+              750: '#2d3033',  // accents / hovers
+            }
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgb(255 255 255 / 0.06), 0 20px 45px -12px rgb(0 0 0 / 0.30)',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-5px)' } },
+            wiggle: { '0%,100%': { transform: 'rotate(-0.6deg)' }, '50%': { transform: 'rotate(0.6deg)' } },
+            shimmer: { '0%': { transform: 'translateX(-100%)' }, '100%': { transform: 'translateX(100%)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            wiggle: 'wiggle 2.4s ease-in-out infinite',
+            shimmer: 'shimmer 1.5s linear infinite',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* fun but subtle link underline */
+    .link-underline {
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 0% 2px;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      transition: background-size .25s ease;
+    }
+    .link-underline:hover { background-size: 100% 2px; }
+
+    /* playful card micro-interaction */
+    .card {
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      will-change: transform;
+    }
+    .card:hover { transform: translateY(-3px) rotate(0.25deg); }
+
+    /* accent shimmer bar utility */
+    .shimmer-bar { position: relative; overflow: hidden; }
+    .shimmer-bar::after{
+      content:'';
+      position:absolute; inset:0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      animation: shimmer 1.6s linear infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-zinc-50 text-zinc-900 dark:bg-noir-900 dark:text-zinc-100 font-display">
+
+  <!-- Top bar -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-noir-900/70 border-b border-zinc-200/60 dark:border-noir-750">
+    <div class="container flex items-center gap-4 py-3">
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 shadow-glow"></div>
+          <div class="absolute -inset-1 rounded-2xl border border-white/10 animate-float"></div>
+        </div>
+        <span class="font-semibold tracking-tight">Brandon Redmann</span>
+      </div>
+      <nav class="ml-auto hidden md:flex items-center gap-6 text-sm">
+        <!-- <a href="#interests" class="link-underline">Interests</a> -->
+        <a href="#projects" class="link-underline">Projects</a>
+        <!-- <a href="#family" class="link-underline">Family</a> -->
+        <a href="#resume" class="link-underline">Resume</a>
+      </nav>
+      <button id="themeToggle" class="ml-2 rounded-xl border border-zinc-200 dark:border-noir-750 px-3 py-1.5 text-xs hover:bg-zinc-100 dark:hover:bg-noir-800">
+        Toggle theme
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container py-12 md:py-16">
+    <div class="grid md:grid-cols-12 gap-6 items-center">
+      <div class="md:col-span-7">
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight">
+          Senior Software Engineer / Tech Lead
+        </h1>
+        <p class="mt-4 text-zinc-600 dark:text-zinc-300/90 max-w-2xl">
+          Crafting scalable web apps with TypeScript, React, Angular, NestJS, C#, and more. Passionate about frontier tech and clean code!
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="mailto:bredmann245@gmail.com" class="card inline-flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-noir-750 px-4 py-2 text-sm bg-white/60 dark:bg-noir-850/70 hover:shadow-glow">Email</a>
+          <a href="https://github.com/bredmann245" target="_blank" class="card inline-flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-noir-750 px-4 py-2 text-sm bg-white/60 dark:bg-noir-850/70 hover:shadow-glow">GitHub</a>
+          <a href="#resume" class="card inline-flex items-center gap-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-noir-900 px-4 py-2 text-sm shadow-glow">View Resume</a>
+        </div>
+
+        <!-- playful “now” strip -->
+        <div class="relative mt-6 rounded-xl overflow-hidden shimmer-bar">
+          <div class="relative flex flex-wrap items-center gap-3 text-xs bg-white/60 dark:bg-noir-850/70 border border-zinc-200 dark:border-noir-750 rounded-xl px-3 py-2">
+            <span class="px-2 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Current Project: Unity reusable packages</span>
+            <span class="px-2 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Reading: Pet Semetary</span>
+            <span class="px-2 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Work: AI automation research</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="card rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/60 dark:bg-noir-850/70 p-4 md:p-6 shadow-glow">
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Quick Skills</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">TypeScript</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Angular</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">NestJS</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Next.js</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Node.js</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">PostgreSQL</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Kafka</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Docker</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Kubernetes</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">CI/CD</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">React</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">C#</span>
+            <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Auth0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wavy divider -->
+  <div class="relative">
+    <svg class="w-full h-10 text-zinc-200 dark:text-noir-850" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="currentColor" d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+
+<!-- Projects -->
+<section id="projects" class="container py-10 md:py-14">
+  <h2 class="text-2xl md:text-3xl font-semibold">Personal Projects</h2>
+
+  <div class="mt-6 grid md:grid-cols-2 gap-6">
+    <!-- Unity: Third Person Controller (30%) -->
+    <a href="https://github.com/bredmann245/com.bredmann.thirdpersoncontroller" target="_blank"
+       class="card group rounded-3xl border border-zinc-200 dark:border-noir-750 bg-gradient-to-br from-zinc-50 to-white dark:from-noir-850 dark:to-noir-800 p-6 hover:shadow-glow transition">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-semibold">Third Person Controller</h3>
+        <span class="text-[11px] rounded-full px-2.5 py-1 border border-zinc-200 dark:border-noir-750">GitHub</span>
+      </div>
+      <p class="mt-2 text-zinc-600 dark:text-zinc-300/90">
+        Modular character controller with camera rig, input system, and clean extension points.
+      </p>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">C#</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Cinemachine</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Input System</span>
+      </div>
+
+      <!-- Progress -->
+      <div class="mt-5">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-zinc-500">Progress</span>
+          <span class="font-medium">30%</span>
+        </div>
+        <div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-noir-800 overflow-hidden"
+             role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="Unity project completion">
+          <div class="h-full rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 transition-[width] duration-700 ease-out"
+               style="width:0%" data-progress="30"></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Next.js / NestJS Web App (40%) -->
+    <a href="https://app.brandonredmann.com" target="_blank"
+       class="card group rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6 hover:shadow-glow transition">
+      <div class="flex items-center justify-between gap-4">
+        <h3 class="text-xl font-semibold">Personal Photos &amp; Videos</h3>
+        <span class="text-[11px] rounded-full px-2.5 py-1 border border-zinc-200 dark:border-noir-750">Live</span>
+      </div>
+      <p class="mt-2 text-zinc-600 dark:text-zinc-300/90">
+        Pinterest-style grid app for my own media. Fast, minimal, and easy to browse.
+      </p>
+
+      <div class="mt-4 flex flex-wrap gap-2 text-xs">
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Next.js</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">React</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">NestJS</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Nx</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">PostgreSQL</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">TypeORM</span>
+        <span class="px-2.5 py-1 rounded-full bg-zinc-100 dark:bg-noir-800">Auth0</span>
+      </div>
+
+      <!-- Progress -->
+      <div class="mt-5">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-zinc-500">Progress</span>
+          <span class="font-medium">40%</span>
+        </div>
+        <div class="mt-2 h-2 rounded-full bg-zinc-200 dark:bg-noir-800 overflow-hidden"
+             role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Web app completion">
+          <div class="h-full rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 transition-[width] duration-700 ease-out"
+               style="width:0%" data-progress="40"></div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+  <!-- Wavy divider -->
+  <div class="relative">
+    <svg class="w-full h-10 text-zinc-200 dark:text-noir-850" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="currentColor" d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,60 L0,60 Z"></path>
+    </svg>
+  </div>
+
+  <!-- Resume (no embed; download link only) -->
+  <section id="resume" class="container py-10 md:py-16">
+    <div class="flex items-end justify-between gap-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Resume</h2>
+      <a
+        href="https://bredmann-site.sfo3.cdn.digitaloceanspaces.com/resume/Brandon%20Redmann%20-%20Resume.pdf"
+        class="text-sm link-underline"
+        target="_blank" rel="noopener"
+        >Download PDF</a>
+    </div>
+
+    <!-- Summary -->
+    <div class="mt-6 rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+      <h3 class="text-lg font-semibold">Professional Summary</h3>
+      <p class="mt-2 text-zinc-700 dark:text-zinc-200/95">
+        Dynamic Senior Software Engineer with a proven track record at Interlace Health. Experienced in architecting
+        scalable solutions and leading teams. Expert in TypeScript and Angular, driving impactful applications and
+        real-time analytics in healthcare.
+      </p>
+    </div>
+
+    <!-- Skills -->
+    <div class="mt-6 rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+      <h3 class="text-lg font-semibold">Skills</h3>
+      <div class="mt-3 flex flex-wrap gap-2">
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">TypeScript</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">JavaScript</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">C#</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">SQL</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">PostgreSQL</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">MySQL</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Angular</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Nx</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">NestJS</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Node.js</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">React</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">React Native</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Azure</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">AWS</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">GCP</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Docker</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Kubernetes</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">CI/CD</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Sequelize</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Kafka</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">BullMQ</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Auth0</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Jest</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Cypress</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">Power BI</span>
+        <span class="px-3 py-1 rounded-full bg-zinc-100 dark:bg-noir-800 text-xs">GoodData</span>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="mt-6 grid gap-6">
+      <div class="rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+        <h3 class="text-lg font-semibold">Interlace Health — Senior Software Engineer (Full Stack) / Technical Leader</h3>
+        <p class="text-sm text-zinc-500 mt-1">St. Louis, MO • Mar 2023 – Present</p>
+        <ul class="mt-3 space-y-2 text-zinc-700 dark:text-zinc-200/95 list-disc pl-5">
+          <li>Led the engineering team, mentoring developers and driving technical strategy.</li>
+          <li>Architected scalable ORM and migration strategies with Sequelize.</li>
+          <li>Delivered Angular apps for auditing, workflows, and patient management.</li>
+          <li>Integrated Power BI into Express backend for real-time analytics.</li>
+          <li>Designed Kafka event pipelines for real-time ingestion and processing.</li>
+          <li>Built data models and ETL pipelines enabling org-wide reporting.</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+        <h3 class="text-lg font-semibold">Drive Social Media — Software Engineer (Full Stack)</h3>
+        <p class="text-sm text-zinc-500 mt-1">St. Louis, MO • Feb 2022 – Feb 2023</p>
+        <ul class="mt-3 space-y-2 text-zinc-700 dark:text-zinc-200/95 list-disc pl-5">
+          <li>Built integrations with Facebook, Google Analytics, and Ads APIs using React & NestJS.</li>
+          <li>Refined ROI algorithms for actionable marketing intelligence.</li>
+          <li>Implemented RBAC with Auth0; built a paginated user management UI mirroring Auth0.</li>
+          <li>Practiced TDD with Jest & Cypress across the stack.</li>
+          <li>Created BullMQ schedulers for data syncing and automation.</li>
+          <li>Embedded GoodData BI into React dashboards; integrated Kafka workflows.</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+        <h3 class="text-lg font-semibold">Interlace Health — Software Engineer (Full Stack)</h3>
+        <p class="text-sm text-zinc-500 mt-1">St. Louis, MO • Mar 2020 – Feb 2022</p>
+        <ul class="mt-3 space-y-2 text-zinc-700 dark:text-zinc-200/95 list-disc pl-5">
+          <li>Developed a clinician dashboard in Angular for appointments, forms, and digital signatures.</li>
+          <li>Built microservices and REST APIs with Node.js, Express, Sequelize, and C#.</li>
+          <li>Owned PostgreSQL schemas, migrations, and stored procedures.</li>
+          <li>Shipped CI/CD with GitHub Actions & Azure DevOps for Docker/Kubernetes.</li>
+          <li>Provisioned HIPAA-grade Kubernetes infra in Azure.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="mt-6 rounded-3xl border border-zinc-200 dark:border-noir-750 bg-white/70 dark:bg-noir-850/70 p-6">
+      <h3 class="text-lg font-semibold">Education</h3>
+      <p class="mt-2">
+        B.S. in Computer Science — Saint Louis University (May 2020)
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-zinc-200 dark:border-noir-750">
+    <div class="container py-8 text-sm text-zinc-500">
+      © <span id="year"></span>    Redmann. Built with Tailwind CSS.
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      root.classList.add('dark');
+    }
+    toggle.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.theme = root.classList.contains('dark') ? 'dark' : 'light';
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Animate progress bars
+    document.querySelectorAll('[data-progress]').forEach(el => {
+      const pct = Math.max(0, Math.min(100, Number(el.dataset.progress) || 0));
+      requestAnimationFrame(() => { el.style.width = pct + '%'; });
+    });
+  </script>
+
+</body>
+</html>
